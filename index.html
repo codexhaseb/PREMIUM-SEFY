@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Sefy | Ultimate Premium Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-frame {
+            max-width: 450px;
+            width: 100%;
+            background: #fff;
+            border-radius: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 8px #2c2c2c;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-bar {
+            background: #000;
+            color: #fff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .live-status {
+            background: #e8f5e9;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(1.2); }
+        }
+
+        .premium-header {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .premium-badge {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .premium-header h1 {
+            font-size: 32px;
+            color: #fff;
+            margin: 10px 0;
+        }
+
+        .premium-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 25px 20px;
+            background: #f8f9fa;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .premium-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 18px 22px;
+            border-radius: 60px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .premium-btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-icon {
+            font-size: 24px;
+        }
+
+        .btn-glow {
+            animation: glowPulse 0.5s ease;
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255,215,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); }
+        }
+
+        .features-showcase {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .features-showcase h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            font-size: 18px;
+        }
+
+        .fake-progress {
+            margin-top: 15px;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .fake-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #f5af19, #f12711);
+            transition: width 1s ease;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1e2f;
+            color: #ffd966;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .developer-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,215,0,0.3);
+        }
+
+        .developer-name {
+            color: #ffd966;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .developer-title {
+            color: #aaa;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 480px) {
+            .phone-frame {
+                border-radius: 35px;
+            }
+            .premium-btn {
+                padding: 15px 18px;
+                font-size: 15px;
+            }
+            .toast {
+                white-space: nowrap;
+                font-size: 11px;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>📱 9:41</span>
+            <span>🔋 100% | 5G</span>
+        </div>
+
+        <div class="live-status">
+            <span class="live-dot"></span>
+            <span>🟢 LIVE | Always Online | 24/7 Active</span>
+        </div>
+
+        <div class="premium-header">
+            <div class="premium-badge">
+                ⭐ PREMIUM ACCESS ⭐
+            </div>
+            <h1>PREMIUM SEFY</h1>
+            <p>Ultimate Premium Features | Fully Unlocked</p>
+        </div>
+
+        <div class="content">
+            <div class="button-group">
+                <button class="premium-btn" data-feature="vip">
+                    <span>👑 VIP ACCESS</span>
+                    <span class="btn-icon">🔓</span>
+                </button>
+                <button class="premium-btn" data-feature="unlimited">
+                    <span>♾️ UNLIMITED COINS</span>
+                    <span class="btn-icon">💰</span>
+                </button>
+                <button class="premium-btn" data-feature="hack">
+                    <span>🛡️ ANTI-BAN SYSTEM</span>
+                    <span class="btn-icon">⚡</span>
+                </button>
+                <button class="premium-btn" data-feature="skin">
+                    <span>🎨 PREMIUM SKINS</span>
+                    <span class="btn-icon">🎨</span>
+                </button>
+                <button class="premium-btn" data-feature="boost">
+                    <span>🚀 100% BOOST</span>
+                    <span class="btn-icon">💨</span>
+                </button>
+            </div>
+
+            <div class="features-showcase" id="featureShowcase">
+                <h3>
+                    <span>🎯</span> 
+                    <span id="featureTitle">PREMIUM FEATURES</span>
+                </h3>
+                <ul class="feature-list" id="featureList">
+                    <li><span class="feature-icon">✅</span><span>VIP Badge Unlocked</span></li>
+                    <li><span class="feature-icon">✅</span><span>Unlimited Diamonds</span></li>
+                    <li><span class="feature-icon">✅</span><span>No Ads Experience</span></li>
+                    <li><span class="feature-icon">✅</span><span>24/7 Premium Support</span></li>
+                    <li><span class="feature-icon">✅</span><span>Exclusive Content</span></li>
+                </ul>
+                <div class="fake-progress">
+                    <div class="fake-progress-bar" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="developer-section">
+            <div class="developer-name">
+                👨‍💻 DEVELOPER: HASEBUL HASAN
+            </div>
+            <div class="developer-title">
+                PREMIUM SECURITY DEVELOPER | ALWAYS ONLINE
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let toastTimeout = null;
+        
+        function showToast(message, isSuccess = true) {
+            const existingToast = document.querySelector('.toast');
+            if(existingToast) existingToast.remove();
+            if(toastTimeout) clearTimeout(toastTimeout);
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = isSuccess ? `✨ ${message} ✨` : `⚠️ ${message}`;
+            document.body.appendChild(toast);
+            
+            toastTimeout = setTimeout(() => {
+                if(toast) toast.remove();
+            }, 2000);
+        }
+        
+        function generateRandomFeatures(buttonType) {
+            const featureMap = {
+                vip: {
+                    title: "👑 VIP ACCESS UNLOCKED!",
+                    features: ["🎖️ Golden VIP Badge", "💎 Exclusive VIP Lounge", "🌟 Priority Support 24/7", "🎁 VIP Welcome Bonus", "📱 VIP Wallpaper Pack"]
+                },
+                unlimited: {
+                    title: "♾️ UNLIMITED COINS!",
+                    features: ["💰 999,999,999+ Coins", "💎 999,999 Diamonds", "🎲 Unlimited Spins", "🏆 Unlimited Recharge", "🎯 Premium Store Unlocked"]
+                },
+                hack: {
+                    title: "🛡️ ANTI-BAN PROTECTION!",
+                    features: ["🔒 256-bit Encryption", "🛡️ Firewall Protection", "⚡ Real-time Monitoring", "🔐 Secure Login Shield", "🚫 100% Ban Proof"]
+                },
+                skin: {
+                    title: "🎨 PREMIUM SKINS!",
+                    features: ["🐉 Dragon Legend Skin", "⚡ Thor Hammer Skin", "👻 Ghost Spirit Skin", "🔥 Phoenix Fire Skin", "🌙 Moonlight Special Skin"]
+                },
+                boost: {
+                    title: "🚀 100% BOOST ACTIVE!",
+                    features: ["⚡ 2x XP Boost", "💰 5x Drop Rate", "🎯 Headshot Accuracy", "🏃 Speed Boost (Visual)", "💪 Damage Boost (Visual)"]
+                }
+            };
+            
+            const selected = featureMap[buttonType] || featureMap.vip;
+            
+            document.getElementById('featureTitle').innerHTML = selected.title;
+            const featureList = document.getElementById('featureList');
+            featureList.innerHTML = '';
+            
+            selected.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="feature-icon">✨</span><span>${feature}</span>`;
+                featureList.appendChild(li);
+            });
+            
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = '0%';
+            setTimeout(() => { progressFill.style.width = '100%'; }, 100);
+            setTimeout(() => { progressFill.style.width = '0%'; }, 3000);
+        }
+        
+        const successMessages = [
+            "Premium Access Granted! 🎉",
+            "Successfully Unlocked! 🔓",
+            "You are now Premium User! 👑",
+            "Congratulations! All Features Unlocked! 🎊",
+            "Premium Package Activated! ⚡"
+        ];
+        
+        function getRandomMessage() {
+            return successMessages[Math.floor(Math.random() * successMessages.length)];
+        }
+        
+        const buttons = document.querySelectorAll('.premium-btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                this.classList.add('btn-glow');
+                setTimeout(() => this.classList.remove('btn-glow'), 500);
+                
+                const featureType = this.getAttribute('data-feature');
+                generateRandomFeatures(featureType);
+                showToast(getRandomMessage(), true);
+                
+                if(navigator.vibrate) navigator.vibrate(50);
+                
+                console.log(`🚀 Premium Feature Unlocked: ${featureType}`);
+            });
+        });
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showToast("Welcome! Tap any button to unlock premium features 🎉", true);
+            }, 500);
+            
+            console.log('%c═══════════════════════════════════════', 'color: gold');
+            console.log('%c   PREMIUM SEFY - ALWAYS ONLINE EDITION   ', 'color: gold');
+            console.log('%c   DEVELOPER: HASEBUL HASAN               ', 'color: cyan');
+            console.log('%c═══════════════════════════════════════', 'color: gold');
+        });
+    </script>
+</body>
+  </html>
